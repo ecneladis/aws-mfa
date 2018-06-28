@@ -27,4 +27,4 @@ def initial_setup(logger, config, config_path):
         log_error_and_exit(logger, "You must supply aws_secret_access_key")
 
     keyring.set_password("aws:access_key_id", profile_name, aws_access_key_id)
-    keyring.set_password("aws:secret_access_key", profile_name, awsgetpass.getpass_secret_access_key)
+    keyring.set_password("aws:secret_access_key", profile_name, aws_secret_access_key)
