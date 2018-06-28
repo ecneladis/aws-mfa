@@ -11,6 +11,7 @@ import logging
 import os
 import sys
 import boto3
+import keyring
 
 from botocore.exceptions import ClientError, ParamValidationError
 from awsmfa.config import initial_setup
@@ -156,8 +157,8 @@ def validate(args, config):
     reup_message = "Obtaining credentials for a new role or profile."
 
     try:
-        key_id = config.get(long_term_name, 'aws_access_key_id')
-        access_key = config.get(long_term_name, 'aws_secret_access_key')
+        key_id = keyring.get_password('aws:access_key_id', long_term_name)
+        access_key = keyring.get_password('aws:secret_access_key', long_term_name)
     except NoSectionError:
         log_error_and_exit(logger,
                            "Long term credentials session '[%s]' is missing. "
