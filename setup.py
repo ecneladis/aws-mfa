@@ -26,6 +26,8 @@ setup(
     url='https://github.com/broamski/aws-mfa',
     install_requires=[
       'boto3',
-      'keyring'
+      'keyring',
+      'dbus-python',
+      'secretstorage'
     ]
 )
