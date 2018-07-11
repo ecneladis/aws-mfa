@@ -86,7 +86,7 @@ def main():
                         required=False)
     parser.add_argument('--no-keychain',
                         action="store_true",
-                        help="Do not use system keychain to store long term credentials",
+                        help="Do not use system keychain to store or retrieve long term credentials",
                         required=False)
     args = parser.parse_args()
 

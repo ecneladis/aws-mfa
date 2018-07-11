@@ -29,7 +29,8 @@ Option 2
 Credentials File Setup
 ----------------------
 
-By default long term credentials are stored in system keychain (using [keyring library](https://pypi.org/project/keyring/)), you can store and use credentials from credentials file (located at `~/.aws/credentials`) by running with `--no-keychain` command line argument. Only short credentials are stored AWS credentials file.
+By default long term credentials are stored in system keychain (using [keyring library](https://pypi.org/project/keyring/)), only short term credentials are stored in `~/.aws/credentials`.
+It is possible to not use system keychain to store and retrieve long term credentials by running __aws-mfa__ with the `--no-keychain` command line flag. When using the `--no-keychain` flag, long term credentials are stored in and retrieved from `~/.aws/credentials` _(NOT RECOMMENDED)_.
 
 In a typical AWS credentials file credentials are stored in sections, denoted by a pair of brackets: `[]`. The `[default]` section stores your default credentials. You can store multiple sets of credentials using different profile names. If no profile is specified, the `[default]` section is always used.
 
@@ -171,8 +172,8 @@ Usage
                         role. By default, this is your local username.
 --token TOKEN, --mfa-token TOKEN
                         Provide MFA token as an argument
---no-keychain           Do not use system keychain to store long term
-                        credentials
+--no-keychain           Do not use system keychain to store or retrieve long
+                        term credentials
 ```
 
 **Argument precedence**: Command line arguments take precedence over environment variables.
