@@ -29,9 +29,11 @@ Option 2
 Credentials File Setup
 ----------------------
 
-In a typical AWS credentials file (located at `~/.aws/credentials`), credentials are stored in sections, denoted by a pair of brackets: `[]`. The `[default]` section stores your default credentials. You can store multiple sets of credentials using different profile names. If no profile is specified, the `[default]` section is always used.
+By default long term credentials are stored in system keychain (using [keyring library](https://pypi.org/project/keyring/)), you can store and use credentials from credentials file (located at `~/.aws/credentials`) by running with `--no-keychain` command line argument. Only short credentials are stored AWS credentials file.
 
-By default long term credential sections are identified by the convention `[<profile_name>-long-term]` and short term credentials are identified by the typical convention: `[<profile_name>]`. The following illustrates how you would configure you credentials file using **aws-mfa** with your default credentials:
+In a typical AWS credentials file credentials are stored in sections, denoted by a pair of brackets: `[]`. The `[default]` section stores your default credentials. You can store multiple sets of credentials using different profile names. If no profile is specified, the `[default]` section is always used.
+
+Long term credential sections are identified by the convention `[<profile_name>-long-term]` and short term credentials are identified by the typical convention: `[<profile_name>]`. The following illustrates how you would configure you credentials file using **aws-mfa** with your default credentials:
 
 ```ini
 [default-long-term]
@@ -167,6 +169,10 @@ Usage
 --role-session-name ROLE_SESSION_NAME
                         Friendly session name required when using --assume-
                         role. By default, this is your local username.
+--token TOKEN, --mfa-token TOKEN
+                        Provide MFA token as an argument
+--no-keychain           Do not use system keychain to store long term
+                        credentials
 ```
 
 **Argument precedence**: Command line arguments take precedence over environment variables.
